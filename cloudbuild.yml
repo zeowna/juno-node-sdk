@@ -1,10 +1,12 @@
 steps:
   - name: 'gcr.io/cloud-builders/yarn'
     id: Install
+    secretEnv: ['NPM_TOKEN']
     args: ['install']
 
   - name: 'gcr.io/cloud-builders/yarn'
     id: Build
+    secretEnv: ['NPM_TOKEN']
     args: ['build']
 
   - name: 'gcr.io/cloud-builders/npm'
