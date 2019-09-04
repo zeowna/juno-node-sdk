@@ -1,1 +1,1 @@
-# juno-node-sdk
+# Juno Node SDK
