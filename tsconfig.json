@@ -6,7 +6,8 @@
     "noImplicitAny": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "declaration": true
   },
   "include": [
     "src/**/*.ts"
