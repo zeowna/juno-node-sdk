@@ -1,0 +1,17 @@
+steps:
+  - name: 'gcr.io/cloud-builders/yarn'
+    id: Install
+    args: ['install']
+
+  - name: 'gcr.io/cloud-builders/yarn'
+    id: Build
+    args: ['build']
+
+  - name: 'gcr.io/cloud-builders/npm'
+    id: Publish on NPM
+    secretEnv: ['NPM_TOKEN']
+    args: ['publish', '--access', 'public']
+secrets:
+  - kmsKeyName: projects/anthor-general/locations/global/keyRings/services/cryptoKeys/NPM_TOKEN
+    secretEnv:
+      NPM_TOKEN: CiQAjTohlA9eMLGdQ+hHtsI3JNPC1XU5ei2ZDInB1iLr9FaSI+0STQD4MI/q1/eFQplsPS49Odi0paPVF8fqQsrs60OL256pP2QYdXyxoyMRsW+Q8OcyyEnpAsIT7J4z/X/MAC3UzALPXK8qsQg5njZqrnnt

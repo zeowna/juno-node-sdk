@@ -1,0 +1,36 @@
+export interface BankSlipInput {
+  description?: string;
+  reference?: string;
+  amount?: string;
+  totalAmount?: string;
+  dueDate?: string;
+  installments?: string;
+  maxOverdueDays?: string;
+  fine?: string;
+  interest?: string;
+  discountAmount?: string;
+  discountDays?: string;
+  payerName?: string;
+  payerCpfCnpj?: string;
+  payerEmail?: string;
+  payerSecondaryEmail?: string;
+  payerPhone?: string;
+  payerBirthDate?: string;
+  billingAddressStreet?: string;
+  billingAddressNumber?: string;
+  billingAddressComplement?: string;
+  billingAddressNeighborhood?: string;
+  billingAddressCity?: string;
+  billingAddressState?: string;
+  billingAddressPostcode?: string;
+  notifyPayer?: string;
+  notificationUrl?: string;
+  responseType?: string;
+  feeSchemaToken?: string;
+  splitRecipient?: string;
+  paymentTypes?: string;
+  creditCardHash?: string;
+  creditCardStore?: string;
+  creditCardId?: string;
+  paymentAdvance?: string;
+}
