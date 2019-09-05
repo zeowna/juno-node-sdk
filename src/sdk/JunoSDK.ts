@@ -35,7 +35,7 @@ export class JunoSDK {
    * @param token
    */
   private validateEnvironment(baseUrl: string, token: string) {
-    if (!baseUrl || token) {
+    if (!baseUrl || !token) {
       throw new Error("JUNO_API_BASE_URL and JUNO_TOKEN environment variables are required.");
     }
   }
