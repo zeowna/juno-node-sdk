@@ -9,6 +9,8 @@ import { BaseResource } from "./BaseResource";
 
 /**
  * Charge Resource class
+ *
+ * Handle Charge requests
  */
 export class ChargeResource extends BaseResource {
   public issueCharge(issueChargeInput: IssueChargeInput) {
