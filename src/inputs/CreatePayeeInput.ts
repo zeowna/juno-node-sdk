@@ -24,13 +24,14 @@ export interface CreatePayeeInput {
   bankAccountType?: BankAccountTypes;
   accountComplementNumber?: string;
   street?: string;
-  number?: string;
+  number?: number;
   complement?: string;
   neighborhood?: string;
   city?: string;
   state?: string;
   postCode?: string;
 
+  // Advanced fields
   emailOptOut?: boolean;
   autoApprove?: boolean;
   autoTransfer?: boolean;
