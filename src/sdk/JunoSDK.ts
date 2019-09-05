@@ -12,13 +12,13 @@ export class JunoSDK {
   private readonly _chargeResource: ChargeResource;
   private readonly _transferResource: TransferResource;
 
-  constructor(config: JunoSDKConfig) {
+  constructor(config: JunoSDKConfig = {}) {
     const { JUNO_ENV, JUNO_TOKEN } = process.env;
     this.validateEnvironment(JUNO_TOKEN);
 
     const token = JUNO_TOKEN;
     const junoClient = axios.create({
-      baseURL: config.sandbox || JUNO_ENV === "sandbox" ? SANDBOX_JUNO_API_BASE_URL : JUNO_API_BASE_URL,
+      baseURL: this.setEndpoint(config, JUNO_ENV),
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
@@ -27,6 +27,24 @@ export class JunoSDK {
     this._balanceResource = new BalanceResource(junoClient, token);
     this._chargeResource = new ChargeResource(junoClient, token);
     this._transferResource = new TransferResource(junoClient, token);
+  }
+
+  private setEndpoint(config: JunoSDKConfig, env: string) {
+    if (config.sandbox !== undefined) {
+      if (config.sandbox || env === "sandbox") {
+        return SANDBOX_JUNO_API_BASE_URL;
+      }
+      return JUNO_API_BASE_URL;
+    }
+
+    switch (env) {
+      case "sandbox":
+        return SANDBOX_JUNO_API_BASE_URL;
+      case "production":
+        return JUNO_API_BASE_URL;
+      default:
+        throw new JunoEnvironmentError("Invalid JUNO_ENV.");
+    }
   }
 
   /**
@@ -56,7 +74,7 @@ export class JunoSDK {
   }
 
   /**
-   * Transfert resources
+   * Transfer resources
    */
   get transfer() {
     return this._transferResource;
