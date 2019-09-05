@@ -1,7 +1,7 @@
 import axios from "axios";
-import { BalanceResource } from "./BalanceResource";
-import { ChargeResource } from "./ChargeResource";
-import { TransferResource } from "./TransferResource";
+import { BalanceResource } from "../resources/BalanceResource";
+import { ChargeResource } from "../resources/ChargeResource";
+import { TransferResource } from "../resources/TransferResource";
 
 /**
  * Juno SDK Class

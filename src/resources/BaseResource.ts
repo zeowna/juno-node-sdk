@@ -1,25 +1,31 @@
 import { AxiosInstance } from "axios";
+import { JunoError } from "../errors";
 
 export class BaseResource {
   constructor(private readonly junoClient: AxiosInstance, private readonly token: string) {
   }
 
   private toEncodedUrlFormat(payload: any) {
-    Object.keys(payload).map(key => {
+    return Object.keys(payload).map(key => {
       // @ts-ignore
-      return `${key}=${bankSlipData[key]}`;
+      return `${key}=${payload[key]}`;
     }).join("&");
   }
 
   protected async doRequest<T>(endpoint: string, payload: any): Promise<T> {
     try {
-      const { data } = await this.junoClient.post(endpoint, this.toEncodedUrlFormat({
+      const encodedPayload = this.toEncodedUrlFormat({
         token: this.token,
         ...payload,
-      }));
+      });
+
+      const { data } = await this.junoClient.post(endpoint, encodedPayload);
       return data;
     } catch (err) {
-      throw err.response.data;
+      if (err.response) {
+        throw new JunoError(err.response.data.errorMessage);
+      }
+      throw err;
     }
   }
 

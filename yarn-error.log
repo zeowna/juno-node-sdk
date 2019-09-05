@@ -1,5 +1,5 @@
 Arguments: 
-  /home/ze/.nvm/versions/node/v10.16.3/bin/node /home/ze/.nvm/versions/node/v10.16.3/bin/yarn tslint
+  /home/ze/.nvm/versions/node/v10.16.3/bin/node /home/ze/.nvm/versions/node/v10.16.3/bin/yarn build
 
 PATH: 
   /home/ze/.nvm/versions/node/v10.16.3/bin:/home/ze/repos/anthor/juno-node-sdk/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/jdk-8-oracle/bin:/usr/lib/jvm/jdk-8-oracle/db/bin
@@ -27,7 +27,7 @@ Trace:
 npm manifest: 
   {
     "name": "juno-node-sdk",
-    "version": "0.0.1",
+    "version": "0.1.1",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
     "repository": "git@github.com:anthorteam/juno-node-sdk.git",

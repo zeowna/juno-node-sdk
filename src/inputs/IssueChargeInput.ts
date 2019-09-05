@@ -1,14 +1,14 @@
 export interface IssueChargeInput {
   description?: string;
   reference?: string;
-  amount?: string;
-  totalAmount?: string;
+  amount?: number;
+  totalAmount?: number;
   dueDate?: string;
-  installments?: string;
-  maxOverdueDays?: string;
-  fine?: string;
-  interest?: string;
-  discountAmount?: string;
+  installments?: number;
+  maxOverdueDays?: number;
+  fine?: number;
+  interest?: number;
+  discountAmount?: number;
   discountDays?: string;
   payerName?: string;
   payerCpfCnpj?: string;
