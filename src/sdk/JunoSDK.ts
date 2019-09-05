@@ -1,41 +1,63 @@
-import axios, { AxiosError, AxiosInstance } from "axios";
-import { BankSlipInput, IssueChangeResponse } from "../structs";
+import axios from "axios";
+import { BalanceResource } from "./BalanceResource";
+import { ChargeResource } from "./ChargeResource";
+import { TransferResource } from "./TransferResource";
 
+/**
+ * Juno SDK Class
+ */
 export class JunoSDK {
-  private readonly junoClient: AxiosInstance;
-  private readonly token: string;
+  private readonly _balanceResource: BalanceResource;
+  private readonly _chargeResource: ChargeResource;
+  private readonly _transferResource: TransferResource;
 
   constructor() {
-    this.token = process.env.JUNO_TOKEN;
-    this.junoClient = axios.create({
-      baseURL: process.env.JUNO_API_BASE_URL,
+    const { JUNO_TOKEN, JUNO_API_BASE_URL } = process.env;
+    this.validateEnvironment(JUNO_API_BASE_URL, JUNO_TOKEN);
+
+    const token = JUNO_TOKEN;
+    const junoClient = axios.create({
+      baseURL: JUNO_API_BASE_URL,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
     });
+
+    this._balanceResource = new BalanceResource(junoClient, token);
+    this._chargeResource = new ChargeResource(junoClient, token);
+    this._transferResource = new TransferResource(junoClient, token);
   }
 
-  private toEncodedUrlFormat(payload: any) {
-    Object.keys(payload).map(key => {
-      // @ts-ignore
-      return `${key}=${bankSlipData[key]}`;
-    }).join("&");
-  }
-
-  private async doRequest<T>(endpoint: string, payload: any): Promise<T> {
-    try {
-      const { data } = await this.junoClient.post(endpoint, this.toEncodedUrlFormat(payload));
-      return data;
-    } catch (err) {
-      throw err.response.data;
+  /**
+   * Performs environment validation
+   * @see https://www.boletobancario.com/boletofacil/integration/integration.html
+   * @param baseUrl
+   * @param token
+   */
+  private validateEnvironment(baseUrl: string, token: string) {
+    if (!baseUrl || token) {
+      throw new Error("JUNO_API_BASE_URL and JUNO_TOKEN environment variables are required.");
     }
   }
 
-  public async issueCharge(bankSlipData: BankSlipInput) {
-    return this.doRequest<IssueChangeResponse>(
-      "/issue-charge",
-      bankSlipData,
-    );
+  /**
+   * Balabce resources
+   */
+  get balance() {
+    return this._balanceResource;
   }
 
+  /**
+   * Charge resources
+   */
+  get charge() {
+    return this._chargeResource;
+  }
+
+  /**
+   * Transfert resources
+   */
+  get transfer() {
+    return this._transferResource;
+  }
 }

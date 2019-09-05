@@ -1,4 +1,5 @@
+export * from "./Balance";
 export * from "./BankSlipInput";
 export * from "./Charge";
-export * from "./DefaultResponse";
-export * from "./IssueChangeResponse";
+export * from "./ChargesData";
+export * from "./Payment";
