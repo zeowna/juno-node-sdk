@@ -1,4 +1,4 @@
-export interface BankSlipInput {
+export interface IssueChargeInput {
   description?: string;
   reference?: string;
   amount?: string;

@@ -1,4 +1,4 @@
-export interface ChargesData {
+export interface ListChargeInput {
   token?: string;
   beginDueDate?: string;
   endDueDate?: string;

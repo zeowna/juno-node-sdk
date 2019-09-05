@@ -1,21 +1,20 @@
+import { IssueChargeInput, ListChargeInput } from "../inputs";
 import {
   CancelChargeResponse,
-  DefaultResponse,
   FetchPaymentDetailsResponse,
   IssueChangeResponse,
   ListChargesResponse,
 } from "../responses";
-import { BankSlipInput, ChargesData } from "../structs";
 import { BaseResource } from "./BaseResource";
 
 /**
  * Charge Resource class
  */
 export class ChargeResource extends BaseResource {
-  public issueCharge(bankSlipData: BankSlipInput) {
+  public issueCharge(issueChargeInput: IssueChargeInput) {
     return this.doRequest<IssueChangeResponse>(
       "/issue-charge",
-      bankSlipData,
+      issueChargeInput,
     );
   }
 
@@ -26,10 +25,10 @@ export class ChargeResource extends BaseResource {
     );
   }
 
-  public listCharges(chargesData: ChargesData) {
+  public listCharges(listChargeInput: ListChargeInput) {
     return this.doRequest<ListChargesResponse>(
       "/list-charges",
-      chargesData,
+      listChargeInput,
     );
   }
 
