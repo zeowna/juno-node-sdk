@@ -1,7 +1,7 @@
 import axios from "axios";
-import { BalanceResource } from "../resources/BalanceResource";
-import { ChargeResource } from "../resources/ChargeResource";
-import { TransferResource } from "../resources/TransferResource";
+import { JUNO_API_BASE_URL, SANDBOX_JUNO_API_BASE_URL } from "../consts";
+import { JunoEnvironmentError } from "../errors";
+import { BalanceResource, ChargeResource, TransferResource } from "../resources";
 
 /**
  * Juno SDK Class
@@ -11,13 +11,13 @@ export class JunoSDK {
   private readonly _chargeResource: ChargeResource;
   private readonly _transferResource: TransferResource;
 
-  constructor() {
-    const { JUNO_TOKEN, JUNO_API_BASE_URL } = process.env;
-    this.validateEnvironment(JUNO_API_BASE_URL, JUNO_TOKEN);
+  constructor({ sandbox = true }: { sandbox: boolean }) {
+    const { JUNO_TOKEN } = process.env;
+    this.validateEnvironment(JUNO_TOKEN);
 
     const token = JUNO_TOKEN;
     const junoClient = axios.create({
-      baseURL: JUNO_API_BASE_URL,
+      baseURL: sandbox ? SANDBOX_JUNO_API_BASE_URL : JUNO_API_BASE_URL,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
@@ -34,9 +34,9 @@ export class JunoSDK {
    * @param baseUrl
    * @param token
    */
-  private validateEnvironment(baseUrl: string, token: string) {
-    if (!baseUrl || !token) {
-      throw new Error("JUNO_API_BASE_URL and JUNO_TOKEN environment variables are required.");
+  private validateEnvironment(token: string) {
+    if (!token) {
+      throw new JunoEnvironmentError("JUNO_TOKEN environment variables are required.");
     }
   }
 
