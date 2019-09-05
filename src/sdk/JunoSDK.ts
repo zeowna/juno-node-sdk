@@ -1,4 +1,5 @@
 import axios from "axios";
+import { JunoSDKConfig } from "../configs";
 import { JUNO_API_BASE_URL, SANDBOX_JUNO_API_BASE_URL } from "../consts";
 import { JunoEnvironmentError } from "../errors";
 import { BalanceResource, ChargeResource, TransferResource } from "../resources";
@@ -11,7 +12,7 @@ export class JunoSDK {
   private readonly _chargeResource: ChargeResource;
   private readonly _transferResource: TransferResource;
 
-  constructor({ sandbox = true }: { sandbox: boolean }) {
+  constructor({ sandbox = true }: JunoSDKConfig) {
     const { JUNO_TOKEN } = process.env;
     this.validateEnvironment(JUNO_TOKEN);
 
