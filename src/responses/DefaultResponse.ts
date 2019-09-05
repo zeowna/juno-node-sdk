@@ -1,5 +1,5 @@
 export interface DefaultResponse {
-  successs: boolean;
+  success: boolean;
   errorMessage: string;
   data: any;
 }

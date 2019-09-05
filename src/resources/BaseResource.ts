@@ -13,10 +13,12 @@ export abstract class BaseResource {
    * @param payload
    */
   private toEncodedUrlFormat(payload: any) {
-    return Object.keys(payload).map(key => {
-      // @ts-ignore
-      return `${key}=${payload[key]}`;
-    }).join("&");
+    return Object.keys(payload)
+      .filter(key => payload[key] !== null && payload[key] !== undefined)
+      .map(key => {
+        // @ts-ignore
+        return `${key}=${payload[key]}`;
+      }).join("&");
   }
 
   /**
