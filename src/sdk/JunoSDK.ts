@@ -12,13 +12,13 @@ export class JunoSDK {
   private readonly _chargeResource: ChargeResource;
   private readonly _transferResource: TransferResource;
 
-  constructor({ sandbox = true }: JunoSDKConfig) {
+  constructor(config: JunoSDKConfig) {
     const { JUNO_TOKEN } = process.env;
     this.validateEnvironment(JUNO_TOKEN);
 
     const token = JUNO_TOKEN;
     const junoClient = axios.create({
-      baseURL: sandbox ? SANDBOX_JUNO_API_BASE_URL : JUNO_API_BASE_URL,
+      baseURL: config.sandbox ? SANDBOX_JUNO_API_BASE_URL : JUNO_API_BASE_URL,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
@@ -37,7 +37,7 @@ export class JunoSDK {
    */
   private validateEnvironment(token: string) {
     if (!token) {
-      throw new JunoEnvironmentError("JUNO_TOKEN environment variables are required.");
+      throw new JunoEnvironmentError("JUNO_TOKEN environment variable is required.");
     }
   }
 
