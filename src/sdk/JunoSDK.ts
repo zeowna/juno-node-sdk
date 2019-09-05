@@ -62,7 +62,7 @@ export class JunoSDK {
   }
 
   /**
-   * Balabce resources
+   * Balance resources
    */
   get balance() {
     return this._balanceResource;

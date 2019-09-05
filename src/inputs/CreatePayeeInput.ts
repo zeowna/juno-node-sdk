@@ -12,7 +12,7 @@ export interface CreatePayeeInput {
   linesOfBusiness?: string;
   tradingName?: string;
   companyType?: CompanyTypes;
-  businessAreaId?: string;
+  businessAreaId?: number;
   reprName?: string;
   reprCpfCnpj?: string;
   reprBirthDate?: string;
