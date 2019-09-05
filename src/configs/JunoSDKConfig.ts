@@ -1,3 +1,3 @@
 export interface JunoSDKConfig {
-  sandbox: boolean;
+  sandbox?: boolean;
 }

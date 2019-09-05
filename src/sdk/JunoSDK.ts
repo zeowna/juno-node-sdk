@@ -13,12 +13,12 @@ export class JunoSDK {
   private readonly _transferResource: TransferResource;
 
   constructor(config: JunoSDKConfig) {
-    const { JUNO_TOKEN } = process.env;
+    const { JUNO_ENV, JUNO_TOKEN } = process.env;
     this.validateEnvironment(JUNO_TOKEN);
 
     const token = JUNO_TOKEN;
     const junoClient = axios.create({
-      baseURL: config.sandbox ? SANDBOX_JUNO_API_BASE_URL : JUNO_API_BASE_URL,
+      baseURL: config.sandbox || JUNO_ENV === "sandbox" ? SANDBOX_JUNO_API_BASE_URL : JUNO_API_BASE_URL,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
