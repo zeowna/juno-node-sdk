@@ -1,4 +1,5 @@
 export * from "./CancelChargeResponse";
+export * from "./CreatePayeeResponse";
 export * from "./DefaultResponse";
 export * from "./FetchBalanceResponse";
 export * from "./FetchPaymentDetailsResponse";

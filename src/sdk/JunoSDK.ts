@@ -2,7 +2,7 @@ import axios from "axios";
 import { JunoSDKConfig } from "../configs";
 import { JUNO_API_BASE_URL, SANDBOX_JUNO_API_BASE_URL } from "../consts";
 import { JunoEnvironmentError } from "../errors";
-import { BalanceResource, ChargeResource, TransferResource } from "../resources";
+import { BalanceResource, ChargeResource, PayeeResource, TransferResource } from "../resources";
 
 /**
  * Juno SDK Class
@@ -11,6 +11,7 @@ export class JunoSDK {
   private readonly _balanceResource: BalanceResource;
   private readonly _chargeResource: ChargeResource;
   private readonly _transferResource: TransferResource;
+  private readonly _payee: PayeeResource;
 
   constructor(config: JunoSDKConfig = {}) {
     const { JUNO_ENV, JUNO_TOKEN } = process.env;
@@ -27,6 +28,7 @@ export class JunoSDK {
     this._balanceResource = new BalanceResource(junoClient, token);
     this._chargeResource = new ChargeResource(junoClient, token);
     this._transferResource = new TransferResource(junoClient, token);
+    this._payee = new PayeeResource(junoClient, token);
   }
 
   private setEndpoint(config: JunoSDKConfig, env: string) {
@@ -78,5 +80,12 @@ export class JunoSDK {
    */
   get transfer() {
     return this._transferResource;
+  }
+
+  /**
+   * Payee resources
+   */
+  get payee() {
+    return this._payee;
   }
 }
