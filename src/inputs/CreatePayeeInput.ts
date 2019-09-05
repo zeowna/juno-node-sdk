@@ -27,7 +27,7 @@ export interface CreatePayeeInput {
   number?: number;
   complement?: string;
   neighborhood?: string;
-  city?: string;
+  city?: number;
   state?: string;
   postCode?: string;
 
