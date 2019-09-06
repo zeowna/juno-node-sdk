@@ -29,14 +29,10 @@ export abstract class BaseResource {
    */
   protected async doRequest<T>(endpoint: string, payload: any, token?: string): Promise<T> {
     try {
-      const finalPayload = {
+      const encodedPayload = this.toEncodedUrlFormat({
         token: token || this.token,
         ...payload,
-      };
-
-      console.log(finalPayload);
-      return;
-      const encodedPayload = this.toEncodedUrlFormat(finalPayload);
+      });
 
       const { data } = await this.junoClient.post(endpoint, encodedPayload);
       return data;
