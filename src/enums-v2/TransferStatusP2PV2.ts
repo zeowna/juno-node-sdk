@@ -1,0 +1,6 @@
+export enum TransferStatusP2PV2 {
+  NEEDS_CHECK = 'NEEDS_CHECK',
+  CHECK_FAILED = 'CHECK_FAILED',
+  EXECUTED = 'EXECUTED',
+  CANCELED = 'CANCELED',
+}
