@@ -1,1 +1,1 @@
-export * from "./JunoSDKConfig";
+export * from './JunoSDKConfig';
