@@ -1,11 +1,8 @@
-export * from './enums-v1';
-export * from './structs-v1';
-export * from './inputs-v1';
-export * from './responses-v1';
-export * from './resources-v1';
-export * from './enums-v2';
-export * from './structs-v2';
-export * from './inputs-v2';
-export * from './responses-v2';
-export * from './resources-v2';
-export * from './sdk';
+import * as JunoV2 from './v2';
+
+export * from './v1';
+export * from './v1/configs';
+
+export {
+  JunoV2,
+};

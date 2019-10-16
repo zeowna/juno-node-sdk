@@ -33,6 +33,7 @@
     ],
     "no-console": "error",
     "no-await-in-loop": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "lines-between-class-members": "off"
   }
 }
