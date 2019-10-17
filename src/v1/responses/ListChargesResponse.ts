@@ -1,3 +1,8 @@
-import { IssueChangeResponse } from './IssueChangeResponse';
+import { DefaultResponse } from './DefaultResponse';
+import { Charge } from '../structs';
 
-export type ListChargesResponse = IssueChangeResponse[];
+export interface ListChargesResponse extends DefaultResponse {
+  data: {
+    charges: Charge[];
+  };
+}

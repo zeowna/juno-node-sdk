@@ -1,3 +1,5 @@
+import { Payment } from './Payment';
+
 export interface Charge {
   code?: number;
   reference?: string;
@@ -6,4 +8,11 @@ export interface Charge {
   checkoutUrl?: string;
   installmentLink?: string;
   payNumber?: string;
+  billetDetails?: {
+    bankAccount?: string;
+    ourNumber?: string;
+    barcodeNumber?: string;
+    portfolio?: string;
+  };
+  payments: Payment[];
 }
