@@ -10,7 +10,7 @@ import { BaseResource } from './BaseResource';
 /**
  * ChargeV1 Resource class
  *
- * Handle ChargeV1 requests
+ * Handle Charges requests
  */
 export class ChargesResource extends BaseResource {
   public issueCharge(issueChargeInput: IssueChargeInput) {

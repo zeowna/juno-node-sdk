@@ -1,4 +1,4 @@
-export enum WenhookStatus {
+export enum WebhookStatus {
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
 }

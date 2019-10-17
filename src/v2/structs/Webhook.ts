@@ -1,11 +1,11 @@
 import { Link } from './Link';
 import { EventType } from './EventType';
-import { WenhookStatus } from '../enums';
+import { WebhookStatus } from '../enums';
+import { JunoEntity } from './JunoEntity';
 
-export interface Webhook {
-  id: string;
+export interface Webhook extends JunoEntity {
   url: string;
-  status: WenhookStatus;
+  status: WebhookStatus;
   eventTypes: EventType[];
   _links: {
     self: Link;

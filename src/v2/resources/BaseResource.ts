@@ -32,8 +32,7 @@ export abstract class BaseResource {
    * TODO: this.authResource.refreshOAuthToken() method when its documentation became available
    */
   private async getRequestConfig(token: string): Promise<AxiosRequestConfig> {
-    const { access_token: accessToken } = await this.authResource.generateOAuthToken();
-
+    const accessToken = await this.authResource.getOAuthToken();
     return {
       headers: {
         Authorization: `Bearer ${accessToken}`,

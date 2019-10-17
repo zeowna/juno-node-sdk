@@ -1,8 +1,8 @@
-import { WenhookStatus } from '../enums';
+import { WebhookStatus } from '../enums';
 
 export interface UpdateWebhookInput {
   id: string;
   token?: string;
-  status: WenhookStatus;
+  status: WebhookStatus;
   eventTypes: string[];
 }

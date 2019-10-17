@@ -1,4 +1,4 @@
-import { WenhookStatus } from '../enums';
+import { WebhookStatus } from '../enums';
 
 export interface DeleteWebhookInput {
   id: string;

@@ -4,7 +4,8 @@ import { GenerateOauthTokenResponse } from '../inputs';
 import { RequestHelper } from '../../helpers';
 
 export class AuthResource {
-  private readonly basicToken: string
+  private readonly basicToken: string;
+  private oAuthTokenData: GenerateOauthTokenResponse;
 
   // eslint-disable-next-line no-useless-constructor
   constructor(private junoClient: AxiosInstance, private clientId: string, private secret: string) {
@@ -31,16 +32,25 @@ export class AuthResource {
     }
   }
 
-  async generateOAuthToken() {
-    return this.doRequest<GenerateOauthTokenResponse>('/oauth/token', {
+  private async generateOAuthToken() {
+    this.oAuthTokenData = await this.doRequest<GenerateOauthTokenResponse>('/oauth/token', {
       grant_type: 'client_credentials',
     });
+
+    return this.oAuthTokenData.access_token;
   }
 
   /**
    * TODO: Implement this method when its documentation became available
    */
-  async refreshOAuthToken() {
+  private async refreshOAuthToken() {
     throw new Error('Not yet implemented.');
+  }
+
+  /**
+   * TODO: Implement this method when its documentation became available
+   */
+  async getOAuthToken() {
+    return this.generateOAuthToken();
   }
 }

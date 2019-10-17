@@ -1,12 +1,12 @@
 import { Link } from './Link';
+import { JunoEntity } from './JunoEntity';
 
-export interface Document {
-  id?: string;
-  type?: string;
-  description?: string;
-  approvalStatus?: string;
-  _links?: {
-    self?: Link;
-    upload?: Link;
+export interface Document extends JunoEntity {
+  type: string;
+  description: string;
+  approvalStatus: string;
+  _links: {
+    self: Link;
+    upload: Link;
   };
 }

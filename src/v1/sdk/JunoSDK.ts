@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { format as formatStr } from 'util';
 import { JunoEnvironments, JunoSDKConfig } from '../configs';
 import {
   JUNO_API_BASE_URL_V1, JUNO_ENV, JUNO_TOKEN, SANDBOX_JUNO_API_BASE_URL_V1,
@@ -57,8 +58,8 @@ export class JunoSDK {
     const values = Object.values(JunoEnvironments);
 
     if (!environment || !values.includes(environment)) {
-      throw new JunoEnvironmentError(`JUNO_ENV environment variable is invalid (${environment}),`
-        + ` it must be either (${values.join('|')}).`);
+      const message = 'JUNO_ENV environment variable is invalid (%s), it must be either (%s).';
+      throw new JunoEnvironmentError(formatStr(message, environment, values.join('|')));
     }
   }
 
