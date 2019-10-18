@@ -2,18 +2,26 @@ import { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { JunoError } from '../../errors';
 import { AuthResource } from './AuthResource';
 
+export interface BaseResourceConstructor {
+  junoClient: AxiosInstance;
+  token: string;
+  authResource: AuthResource;
+}
+
 /**
  * Base Resource V2 class
  */
 export abstract class BaseResource {
-  protected abstract readonly baseUri: string
+  protected abstract readonly baseUri: string;
+  protected readonly junoClient: AxiosInstance;
+  protected readonly token: string;
+  private authResource: AuthResource;
 
-  // eslint-disable-next-line no-useless-constructor
-  constructor(
-    protected readonly junoClient: AxiosInstance,
-    protected readonly token: string,
-    private authResource: AuthResource,
-  ) {
+
+  constructor({ junoClient, token, authResource }: BaseResourceConstructor) {
+    this.junoClient = junoClient;
+    this.token = token;
+    this.authResource = authResource;
   }
 
   private getCompleteEndpoint(endpoint: string) {

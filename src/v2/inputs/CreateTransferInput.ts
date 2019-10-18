@@ -1,5 +1,4 @@
 import { TransferTypes } from '../enums';
-import { CreateTransferInput } from './index';
 
 export interface CreateTransferDefaultBankInput {
   token: string;

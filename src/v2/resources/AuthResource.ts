@@ -3,14 +3,21 @@ import { JunoError } from '../../errors';
 import { GenerateOauthTokenResponse } from '../inputs';
 import { RequestHelper } from '../../helpers';
 
+interface AuthResourceConstructor {
+  junoAuthClient: AxiosInstance;
+  clientId: string;
+  secret: string;
+}
+
 export class AuthResource {
   private readonly basicToken: string;
   private oAuthTokenData: GenerateOauthTokenResponse;
+  private junoClient: AxiosInstance
 
-  // eslint-disable-next-line no-useless-constructor
-  constructor(private junoClient: AxiosInstance, private clientId: string, private secret: string) {
+  constructor({ junoAuthClient, clientId, secret }: AuthResourceConstructor) {
+    this.junoClient = junoAuthClient;
     this.basicToken = Buffer
-      .from(`${this.clientId}:${this.secret}`)
+      .from(`${clientId}:${secret}`)
       .toString('base64');
   }
 

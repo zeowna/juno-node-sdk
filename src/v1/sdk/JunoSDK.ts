@@ -2,7 +2,7 @@ import axios from 'axios';
 import { format as formatStr } from 'util';
 import { JunoEnvironments, JunoSDKConfig } from '../configs';
 import {
-  JUNO_API_BASE_URL_V1, JUNO_ENV, JUNO_TOKEN, SANDBOX_JUNO_API_BASE_URL_V1,
+  JUNO_API_BASE_URL, JUNO_ENV, JUNO_TOKEN, SANDBOX_JUNO_API_BASE_URL,
 } from '../../consts';
 import { JunoEnvironmentError } from '../../errors';
 import {
@@ -42,9 +42,9 @@ export class JunoSDK {
   private static setEndpoint(environment: JunoEnvironments) {
     switch (environment) {
       case JunoEnvironments.Sandbox:
-        return SANDBOX_JUNO_API_BASE_URL_V1;
+        return SANDBOX_JUNO_API_BASE_URL;
       case JunoEnvironments.Production:
-        return JUNO_API_BASE_URL_V1;
+        return JUNO_API_BASE_URL;
       default:
         throw new JunoEnvironmentError('Invalid JUNO_ENV.');
     }

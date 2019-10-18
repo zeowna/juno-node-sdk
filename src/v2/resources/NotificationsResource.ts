@@ -1,6 +1,6 @@
 import { BaseResource } from './BaseResource';
 import { GetListResponse } from '../responses';
-import { EventType, Webhook } from '../structs';
+import { EventType, Webhook } from '../entities';
 import { CreateWebhookInput, UpdateWebhookInput } from '../inputs';
 
 export class NotificationsResource extends BaseResource {

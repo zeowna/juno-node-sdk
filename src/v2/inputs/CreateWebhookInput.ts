@@ -1,4 +1,5 @@
 export interface CreateWebhookInput {
-  token: string;
+  url: string;
   eventTypes: string[];
+  token: string;
 }

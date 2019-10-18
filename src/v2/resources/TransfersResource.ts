@@ -1,7 +1,7 @@
 import { TransferTypes } from '../enums';
 import { JunoParamsMissingError } from '../../errors';
 import { CreateTransferDefaultBankInput, CreateTransferInput } from '../inputs';
-import { Transfer } from '../structs';
+import { Transfer } from '../entities';
 import { BaseResource } from './BaseResource';
 
 export class TransfersResource extends BaseResource {
@@ -12,7 +12,7 @@ export class TransfersResource extends BaseResource {
    * @param token User token
    * @param requestTransferInput
    */
-  public create(requestTransferInput: CreateTransferInput) {
+  create(requestTransferInput: CreateTransferInput) {
     const { token, ...payload } = (requestTransferInput as CreateTransferDefaultBankInput);
 
     if (!token && payload.type === TransferTypes.DEFAULT_BANK_ACCOUNT) {
