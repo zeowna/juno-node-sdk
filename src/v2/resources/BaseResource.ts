@@ -33,7 +33,7 @@ export abstract class BaseResource {
       throw new Error('endpoint not defined.');
     }
 
-    return `${this.baseUri}/${endpoint}`;
+    return `${this.baseUri}${endpoint}`;
   }
 
   /**
