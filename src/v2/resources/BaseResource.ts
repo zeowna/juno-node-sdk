@@ -1,4 +1,6 @@
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
+import { createReadStream } from 'fs';
+import * as FormData from 'form-data';
 import { JunoError } from '../../errors';
 import { AuthResource } from './AuthResource';
 
@@ -39,10 +41,11 @@ export abstract class BaseResource {
   /**
    * TODO: this.authResource.refreshOAuthToken() method when its documentation became available
    */
-  private async getRequestConfig(token: string): Promise<AxiosRequestConfig> {
+  private async getRequestConfig(token: string, headers: Record<string, string> = {}): Promise<AxiosRequestConfig> {
     const accessToken = await this.authResource.getOAuthToken();
     return {
       headers: {
+        ...headers,
         Authorization: `Bearer ${accessToken}`,
         'X-Resource-Token': token || this.token,
       },
@@ -100,11 +103,27 @@ export abstract class BaseResource {
     );
   }
 
-
   protected async httpDelete<T>(endpoint: string, token?: string): Promise<T> {
     return BaseResource.handleRequest(this.junoClient.delete(
       this.getCompleteEndpoint(endpoint),
       await this.getRequestConfig(token),
+    ));
+  }
+
+  protected async httpPostMultipart<T>(endpoint: string, filePath: string, token: string): Promise<T> {
+    const newFile = createReadStream(filePath);
+    const form = new FormData();
+    form.append('files', newFile as any);
+
+    return BaseResource.handleRequest(this.junoClient.post(
+      this.getCompleteEndpoint(endpoint),
+      form,
+      await this.getRequestConfig(
+        token,
+        // multipart/form-data
+        form.getHeaders(),
+      ),
+
     ));
   }
 }
