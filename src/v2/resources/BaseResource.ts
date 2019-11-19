@@ -1,4 +1,6 @@
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
+import * as FormData from 'form-data';
+import { ReadStream } from 'fs';
 import { JunoError } from '../../errors';
 import { AuthResource } from './AuthResource';
 
@@ -39,10 +41,11 @@ export abstract class BaseResource {
   /**
    * TODO: this.authResource.refreshOAuthToken() method when its documentation became available
    */
-  private async getRequestConfig(token: string): Promise<AxiosRequestConfig> {
+  private async getRequestConfig(token: string, headers: Record<string, string> = {}): Promise<AxiosRequestConfig> {
     const accessToken = await this.authResource.getOAuthToken();
     return {
       headers: {
+        ...headers,
         Authorization: `Bearer ${accessToken}`,
         'X-Resource-Token': token || this.token,
       },
@@ -55,7 +58,11 @@ export abstract class BaseResource {
       return data;
     } catch (err) {
       if (err.response) {
-        throw new JunoError(err.response.data.details.map((detail: any) => `${detail.message}`));
+        const message = err.response.data.details
+          ? err.response.data.details.map((detail: any) => `${detail.message}`)
+          : err.data;
+
+        throw new JunoError(message);
       }
       throw err;
     }
@@ -100,11 +107,25 @@ export abstract class BaseResource {
     );
   }
 
-
   protected async httpDelete<T>(endpoint: string, token?: string): Promise<T> {
     return BaseResource.handleRequest(this.junoClient.delete(
       this.getCompleteEndpoint(endpoint),
       await this.getRequestConfig(token),
+    ));
+  }
+
+  protected async httpPostMultipart<T>(endpoint: string, readStreams: ReadStream[], token: string): Promise<T> {
+    const form = new FormData();
+    readStreams.forEach(readStream => form.append('files', readStream));
+
+    return BaseResource.handleRequest(this.junoClient.post(
+      this.getCompleteEndpoint(endpoint),
+      form,
+      await this.getRequestConfig(
+        token,
+        // multipart/form-data
+        form.getHeaders(),
+      ),
     ));
   }
 }

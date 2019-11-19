@@ -1,8 +1,8 @@
 Arguments: 
-  /home/ze/.nvm/versions/node/v10.16.3/bin/node /home/ze/.nvm/versions/node/v10.16.3/bin/yarn lint --fix
+  /home/ze/.nvm/versions/node/v10.16.3/bin/node /home/ze/.nvm/versions/node/v10.16.3/bin/yarn lint
 
 PATH: 
-  /home/ze/bin:/home/ze/.vscode-server/bin/88f15d17dca836346e787762685a40bb5cce75a8/bin:/home/ze/bin:/home/ze/bin:/home/ze/.nvm/versions/node/v10.16.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/iCLS/:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/iCLS/:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Users/jose/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/jose/AppData/Local/Programs/Microsoft VS Code/bin:/home/ze/Android/Sdk/platform-tools:/home/ze/Android/Sdk/tools:/home/ze/flutter/bin:/home/ze/Android/Sdk/platform-tools:/home/ze/Android/Sdk/tools:/home/ze/flutter/bin:/home/ze/Android/Sdk/platform-tools:/home/ze/Android/Sdk/tools:/home/ze/flutter/bin
+  /home/ze/bin:/home/ze/repos/anthor/juno-node-sdk/node_modules/.bin:/home/ze/bin:/home/ze/.nvm/versions/node/v10.16.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Users/jose/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/jose/AppData/Local/Programs/Microsoft VS Code/bin:/home/ze/Android/Sdk/platform-tools:/home/ze/Android/Sdk/tools:/home/ze/flutter/bin:/home/ze/Android/Sdk/platform-tools:/home/ze/Android/Sdk/tools:/home/ze/flutter/bin
 
 Yarn version: 
   1.19.1
@@ -27,7 +27,7 @@ Trace:
 npm manifest: 
   {
     "name": "juno-node-sdk",
-    "version": "2.0.9",
+    "version": "2.1.0",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
     "repository": "git@github.com:anthorteam/juno-node-sdk.git",
@@ -42,6 +42,7 @@ npm manifest:
     "dependencies": {
       "@types/node": "^12.7.4",
       "axios": "^0.19.0",
+      "form-data": "^3.0.0",
       "ts-node": "^8.3.0",
       "typescript": "^3.6.2"
     },
@@ -200,6 +201,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/astral-regex/-/astral-regex-1.0.0.tgz#6c8c3fb827dd43ee3918f27b82782ab7658a6fd9"
     integrity sha512-+Ryf6g3BKoRc7jfp7ad8tM4TtMiaWvbF/1/sQcZPkkS7ag3D5nMBCe2UfOTONtAkaG0tO0ij3C5Lwmf1EiyjHg==
   
+  asynckit@^0.4.0:
+    version "0.4.0"
+    resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
+    integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
+  
   axios@^0.19.0:
     version "0.19.0"
     resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.0.tgz#8e09bff3d9122e133f7b8101c8fbdd00ed3d2ab8"
@@ -269,6 +275,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
     integrity sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=
   
+  combined-stream@^1.0.8:
+    version "1.0.8"
+    resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.8.tgz#c3d45a8b34fd730631a110a8a2520682b31d5a7f"
+    integrity sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==
+    dependencies:
+      delayed-stream "~1.0.0"
+  
   concat-map@0.0.1:
     version "0.0.1"
     resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
@@ -327,6 +340,11 @@ Lockfile:
     integrity sha512-3MqfYKj2lLzdMSf8ZIZE/V+Zuy+BgD6f164e8K2w7dgnpKArBDerGYpM46IYYcjnkdPNMjPk9A6VFB8+3SKlXQ==
     dependencies:
       object-keys "^1.0.12"
+  
+  delayed-stream@~1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
+    integrity sha1-3zrhmayt+31ECqrgsp4icrJOxhk=
   
   diff@^4.0.1:
     version "4.0.1"
@@ -599,6 +617,15 @@ Lockfile:
     dependencies:
       debug "=3.1.0"
   
+  form-data@^3.0.0:
+    version "3.0.0"
+    resolved "https://registry.yarnpkg.com/form-data/-/form-data-3.0.0.tgz#31b7e39c85f1355b7139ee0c647cf0de7f83c682"
+    integrity sha512-CKMFDglpbMi6PyN+brwB9Q/GOw0eAnsrEZDgcsH5Krhz5Od/haKHAX0NmQfha2zPPz0JpWzA7GJHGSnvCRLWsg==
+    dependencies:
+      asynckit "^0.4.0"
+      combined-stream "^1.0.8"
+      mime-types "^2.1.12"
+  
   fs.realpath@^1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
@@ -851,6 +878,18 @@ Lockfile:
     version "1.3.5"
     resolved "https://registry.yarnpkg.com/make-error/-/make-error-1.3.5.tgz#efe4e81f6db28cadd605c70f29c831b58ef776c8"
     integrity sha512-c3sIjNUow0+8swNwVpqoH4YCShKNFkMaw6oH1mNS2haDZQqkeZFlHS3dhoeEbKKmJB4vXpJucU6oH75aDYeE9g==
+  
+  mime-db@1.42.0:
+    version "1.42.0"
+    resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.42.0.tgz#3e252907b4c7adb906597b4b65636272cf9e7bac"
+    integrity sha512-UbfJCR4UAVRNgMpfImz05smAXK7+c+ZntjaA26ANtkXLlOe947Aag5zdIcKQULAiF9Cq4WxBi9jUs5zkA84bYQ==
+  
+  mime-types@^2.1.12:
+    version "2.1.25"
+    resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.25.tgz#39772d46621f93e2a80a856c53b86a62156a6437"
+    integrity sha512-5KhStqB5xpTAeGqKBAMgwaYMnQik7teQN4IAzC7npDv6kzeU6prfkR67bc87J1kWMPGkoaZSq1npmexMgkmEVg==
+    dependencies:
+      mime-db "1.42.0"
   
   mimic-fn@^1.0.0:
     version "1.2.0"

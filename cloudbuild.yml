@@ -12,7 +12,12 @@ steps:
   - name: 'gcr.io/cloud-builders/npm'
     id: Publish on NPM
     secretEnv: ['NPM_TOKEN']
-    args: ['publish', '--access', 'public']
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        if [[ "$BRANCH_NAME" == "master" ]]; then npm publish --access public; else echo "'master' branch not detected"; fi
+
 secrets:
   - kmsKeyName: projects/anthor-general/locations/global/keyRings/services/cryptoKeys/NPM_TOKEN
     secretEnv:
