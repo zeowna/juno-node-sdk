@@ -1,5 +1,5 @@
 Arguments: 
-  /home/ze/.nvm/versions/node/v10.16.3/bin/node /home/ze/.nvm/versions/node/v10.16.3/bin/yarn start
+  /home/ze/.nvm/versions/node/v10.16.3/bin/node /home/ze/.nvm/versions/node/v10.16.3/bin/yarn lint
 
 PATH: 
   /home/ze/bin:/home/ze/repos/anthor/juno-node-sdk/node_modules/.bin:/home/ze/bin:/home/ze/.nvm/versions/node/v10.16.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Users/jose/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/jose/AppData/Local/Programs/Microsoft VS Code/bin:/home/ze/Android/Sdk/platform-tools:/home/ze/Android/Sdk/tools:/home/ze/flutter/bin:/home/ze/Android/Sdk/platform-tools:/home/ze/Android/Sdk/tools:/home/ze/flutter/bin

@@ -9,7 +9,7 @@
     "@typescript-eslint"
   ],
   "extends": [
-    "airbnb-base",
+    "eslint-config-airbnb-base",
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
@@ -17,11 +17,12 @@
     "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": "off",
     "class-methods-use-this": "off",
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/indent": ["error", 2],
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/camelcase": "off",
     "arrow-parens": [
       "error",
       "as-needed"

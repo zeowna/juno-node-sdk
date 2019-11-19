@@ -1,3 +1,4 @@
+import { ReadStream } from 'fs';
 import { GetListResponse } from '../responses';
 import { BaseResource } from './BaseResource';
 import { Document } from '../entities';
@@ -13,7 +14,7 @@ export class DocumentResource extends BaseResource {
     return this.httpGet<Document>(`/${id}`, token);
   }
 
-  uploadDocument(id: string, filePath: string, token: string) {
-    return this.httpPostMultipart<Document>(`/${id}/files`, filePath, token);
+  uploadDocument(id: string, readStreams: ReadStream[], token: string) {
+    return this.httpPostMultipart<Document>(`/${id}/files`, readStreams, token);
   }
 }

@@ -1,6 +1,6 @@
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
-import { createReadStream } from 'fs';
 import * as FormData from 'form-data';
+import { ReadStream } from 'fs';
 import { JunoError } from '../../errors';
 import { AuthResource } from './AuthResource';
 
@@ -58,7 +58,11 @@ export abstract class BaseResource {
       return data;
     } catch (err) {
       if (err.response) {
-        throw new JunoError(err.response.data.details.map((detail: any) => `${detail.message}`));
+        const message = err.response.data.details
+          ? err.response.data.details.map((detail: any) => `${detail.message}`)
+          : err.data;
+
+        throw new JunoError(message);
       }
       throw err;
     }
@@ -110,10 +114,9 @@ export abstract class BaseResource {
     ));
   }
 
-  protected async httpPostMultipart<T>(endpoint: string, filePath: string, token: string): Promise<T> {
-    const newFile = createReadStream(filePath);
+  protected async httpPostMultipart<T>(endpoint: string, readStreams: ReadStream[], token: string): Promise<T> {
     const form = new FormData();
-    form.append('files', newFile as any);
+    readStreams.forEach(readStream => form.append('files', readStream));
 
     return BaseResource.handleRequest(this.junoClient.post(
       this.getCompleteEndpoint(endpoint),
@@ -123,7 +126,6 @@ export abstract class BaseResource {
         // multipart/form-data
         form.getHeaders(),
       ),
-
     ));
   }
 }
