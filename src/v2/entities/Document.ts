@@ -1,10 +1,11 @@
 import { Link } from './Link';
 import { JunoEntity } from './JunoEntity';
+import { DocumentApprovalStatus, DocumentTypes } from '../enums';
 
 export interface Document extends JunoEntity {
-  type: string;
+  type: DocumentTypes;
   description: string;
-  approvalStatus: string;
+  approvalStatus: DocumentApprovalStatus;
   _links: {
     self: Link;
     upload: Link;
