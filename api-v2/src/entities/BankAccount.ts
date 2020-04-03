@@ -1,4 +1,4 @@
-import { JunoEntity } from "./JunoEntity";
+import { JunoEntity } from './JunoEntity';
 
 export interface BankAccount extends JunoEntity {
   accountComplementNumber: string;
