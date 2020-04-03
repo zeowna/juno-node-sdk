@@ -1,8 +1,8 @@
 {
   "name": "juno-node-sdk",
   "version": "2.2.3",
-  "main": "v1/index.js",
-  "typings": "v1/index.d.ts",
+  "main": "v2/index.js",
+  "typings": "v2/index.d.ts",
   "repository": "git@github.com:anthorteam/juno-node-sdk.git",
   "license": "MIT",
   "publishConfig": {

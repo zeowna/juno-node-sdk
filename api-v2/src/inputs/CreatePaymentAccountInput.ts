@@ -6,20 +6,20 @@ type BankAccountInput = Omit<BankAccount, keyof JunoEntity>;
 type LegalRepresentativeInput = Omit<LegalRepresentative, keyof JunoEntity>;
 
 export interface CreatePaymentAccountInput {
-  companyType: string;
   name: string;
   document: string;
   email: string;
   phone: string;
   businessArea: number;
-  tradingName: string;
   birthDate: string;
   address: AddressInput;
   bankAccount: BankAccountInput;
-  legalRepresentative: LegalRepresentativeInput;
   type: 'PAYMENT';
-  linesOfBusiness: string;
-  emailOptOut: boolean;
-  autoApprove: boolean;
-  autoTransfer: boolean;
+  companyType?: string;
+  tradingName?: string;
+  legalRepresentative?: LegalRepresentativeInput;
+  linesOfBusiness?: string;
+  emailOptOut?: boolean;
+  autoApprove?: boolean;
+  autoTransfer?: boolean;
 }
