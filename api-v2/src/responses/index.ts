@@ -1,2 +1,2 @@
 export * from './GetListResponse';
-export * from './UpdateDigitalAccountResponse';
+export * from './DigitalAccountResponses';
