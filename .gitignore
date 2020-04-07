@@ -1,3 +1,6 @@
 node_modules
 dist
 test-scripts
+yarn-error.log
+v1
+v2

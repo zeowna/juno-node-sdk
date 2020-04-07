@@ -1,18 +1,20 @@
 steps:
-  - name: 'gcr.io/cloud-builders/yarn'
-    id: Install
+  - id: Install
+    name: node:10-alpine
+    entrypoint: yarn
     secretEnv: ['NPM_TOKEN']
     args: ['install']
 
-  - name: 'gcr.io/cloud-builders/yarn'
-    id: Build
+  - id: Build
+    name: node:10-alpine
+    entrypoint: yarn
     secretEnv: ['NPM_TOKEN']
     args: ['build']
 
-  - name: 'gcr.io/cloud-builders/npm'
-    id: Publish on NPM
+  - id: Publish on NPM
+    name: node:10
     secretEnv: ['NPM_TOKEN']
-    entrypoint: 'bash'
+    entrypoint: bash
     args:
       - '-c'
       - |
