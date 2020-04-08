@@ -11,8 +11,11 @@ import {
 
 export class JunoSDK {
   private readonly _balanceResource: BalancesResource;
+
   private readonly _chargeResource: ChargesResource;
+
   private readonly _transferResource: TransfersResource;
+
   private readonly _payees: PayeesResource;
 
   constructor(config?: JunoSDKConfig) {

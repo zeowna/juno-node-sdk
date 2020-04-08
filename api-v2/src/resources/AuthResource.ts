@@ -1,4 +1,5 @@
 import { AxiosInstance } from 'axios';
+import * as jwt from 'jsonwebtoken';
 import { JunoError } from '../errors';
 import { GenerateOauthTokenResponse } from '../inputs';
 import { RequestHelper } from '../helpers';
@@ -11,8 +12,12 @@ interface AuthResourceConstructor {
 
 export class AuthResource {
   private readonly basicToken: string;
+
   private oAuthTokenData: GenerateOauthTokenResponse;
-  private junoClient: AxiosInstance
+
+  private junoClient: AxiosInstance;
+
+  private oAuthToken: string;
 
   constructor({ junoAuthClient, clientId, secret }: AuthResourceConstructor) {
     this.junoClient = junoAuthClient;
@@ -44,20 +49,33 @@ export class AuthResource {
       grant_type: 'client_credentials',
     });
 
-    return this.oAuthTokenData.access_token;
+    this.oAuthToken = this.oAuthTokenData.access_token;
+    return this.oAuthToken;
   }
 
-  /**
-   * TODO: Implement this method when its documentation became available
-   */
   private async refreshOAuthToken() {
-    throw new Error('Not yet implemented.');
+    try {
+      const decoded = jwt.decode(this.oAuthToken) as Record<string, any>;
+      const currentTime = Date.now() / 1000;
+
+      if (decoded?.exp < currentTime) {
+        return this.generateOAuthToken();
+      }
+
+      return this.oAuthToken;
+    } catch (err) {
+      return this.generateOAuthToken();
+    }
   }
 
   /**
    * TODO: Implement this method when its documentation became available
    */
   async getOAuthToken() {
-    return this.generateOAuthToken();
+    if (!this.oAuthToken) {
+      return this.generateOAuthToken();
+    }
+
+    return this.refreshOAuthToken();
   }
 }

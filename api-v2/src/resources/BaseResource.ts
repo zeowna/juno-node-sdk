@@ -15,8 +15,11 @@ export interface BaseResourceConstructor {
  */
 export abstract class BaseResource {
   protected abstract readonly baseUri: string;
+
   protected readonly junoClient: AxiosInstance;
+
   protected readonly token: string;
+
   private authResource: AuthResource;
 
 

@@ -6,13 +6,13 @@ export type BankAccountInput = Omit<BankAccount, keyof JunoEntity>;
 export type LegalRepresentativeInput = Omit<LegalRepresentative, keyof JunoEntity>;
 
 export interface UpdateDigitalAccountInput {
-  companyType?: string
-  name?: string
-  birthDate?: string
+  companyType?: string;
+  name?: string;
+  birthDate?: string;
   linesOfBusiness?: string;
   email?: string;
   phone?: string;
-  businessArea?: number
+  businessArea?: number;
   tradingName?: string;
   address?: AddressInput;
   bankAccount?: BankAccountInput;
