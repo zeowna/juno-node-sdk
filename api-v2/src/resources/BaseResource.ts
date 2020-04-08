@@ -19,7 +19,6 @@ export abstract class BaseResource {
   protected readonly token: string;
   private authResource: AuthResource;
 
-
   constructor({ junoClient, token, authResource }: BaseResourceConstructor) {
     this.junoClient = junoClient;
     this.token = token;

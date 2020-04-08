@@ -13,28 +13,32 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "import/no-unresolved": "off",
-    "import/prefer-default-export": "off",
-    "import/no-extraneous-dependencies": "off",
-    "class-methods-use-this": "off",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
-    "@typescript-eslint/indent": ["error", 2],
+    "@typescript-eslint/indent": [
+      "error",
+      2
+    ],
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "arrow-parens": [
       "error",
       "as-needed"
     ],
-    "no-return-assign": "off",
+    "class-methods-use-this": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": "off",
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+    "lines-between-class-members": "off",
     "max-len": [
       "error",
       120
     ],
-    "no-console": "error",
     "no-await-in-loop": "off",
-    "no-underscore-dangle": "off",
-    "lines-between-class-members": "off"
+    "no-console": "error",
+    "no-return-assign": "off",
+    "no-underscore-dangle": "off"
   }
 }
