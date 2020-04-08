@@ -12,11 +12,8 @@ interface AuthResourceConstructor {
 
 export class AuthResource {
   private readonly basicToken: string;
-
   private oAuthTokenData: GenerateOauthTokenResponse;
-
   private junoClient: AxiosInstance;
-
   private oAuthToken: string;
 
   constructor({ junoAuthClient, clientId, secret }: AuthResourceConstructor) {
@@ -68,9 +65,6 @@ export class AuthResource {
     }
   }
 
-  /**
-   * TODO: Implement this method when its documentation became available
-   */
   async getOAuthToken() {
     if (!this.oAuthToken) {
       return this.generateOAuthToken();

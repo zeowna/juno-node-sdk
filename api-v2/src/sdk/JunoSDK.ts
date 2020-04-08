@@ -27,13 +27,9 @@ import { BaseResourceConstructor } from '../resources/BaseResource';
  */
 export class JunoSDK {
   private readonly _data: DataResource;
-
   private readonly _digitalAccount: DigitalAccountResource;
-
   private readonly _documents: DocumentResource;
-
   private readonly _notifications: NotificationsResource;
-
   private readonly _transfers: TransfersResource;
 
   constructor(config?: JunoSDKConfig) {

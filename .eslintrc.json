@@ -13,8 +13,6 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "no-useless-constructor": "off",
-    "@typescript-eslint/no-useless-constructor": "error",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
@@ -24,16 +22,16 @@
     ],
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-object-literal-type-assertion": "off",
-    "class-methods-use-this": "off",
     "arrow-parens": [
       "error",
       "as-needed"
     ],
+    "class-methods-use-this": "off",
     "import/no-extraneous-dependencies": "off",
     "import/no-unresolved": "off",
     "import/prefer-default-export": "off",
     "import/extensions": "off",
+    "lines-between-class-members": "off",
     "max-len": [
       "error",
       120
