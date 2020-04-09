@@ -2,16 +2,12 @@ import axios from 'axios';
 import { format as formatStr } from 'util';
 import { JunoEnvironments, JunoSDKConfig } from '../configs';
 import {
-  JUNO_API_AUTH_URLS,
-  JUNO_API_BASE_URLS,
-  JUNO_CLIENT_ID,
-  JUNO_ENV,
-  JUNO_SECRET,
-  JUNO_TOKEN,
+  JUNO_API_AUTH_URLS, JUNO_API_BASE_URLS, JUNO_CLIENT_ID, JUNO_ENV, JUNO_SECRET, JUNO_TOKEN,
 } from '../consts';
 import { JunoEnvironmentError } from '../errors';
 import {
   AuthResource,
+  BalanceResource,
   DataResource,
   DigitalAccountResource,
   NotificationsResource,
@@ -26,6 +22,7 @@ import { BaseResourceConstructor } from '../resources/BaseResource';
  * Integration V2 for NodeJS
  */
 export class JunoSDK {
+  private readonly _balances: BalanceResource;
   private readonly _data: DataResource;
   private readonly _digitalAccount: DigitalAccountResource;
   private readonly _documents: DocumentResource;
@@ -52,6 +49,7 @@ export class JunoSDK {
       authResource,
     };
 
+    this._balances = new BalanceResource(resourceConstructor);
     this._data = new DataResource(resourceConstructor);
     this._digitalAccount = new DigitalAccountResource(resourceConstructor);
     this._documents = new DocumentResource(resourceConstructor);
@@ -140,6 +138,10 @@ export class JunoSDK {
     }
 
     return JUNO_API_BASE_URLS[environment];
+  }
+
+  get balances() {
+    return this._balances;
   }
 
   get data(): DataResource {
