@@ -1,4 +1,5 @@
 export * from './Address';
+export * from './Balance';
 export * from './BankAccount';
 export * from './Document';
 export * from './EventType';

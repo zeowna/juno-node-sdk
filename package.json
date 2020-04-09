@@ -1,6 +1,6 @@
 {
   "name": "juno-node-sdk",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "main": "v2/index.js",
   "typings": "v2/index.d.ts",
   "repository": "git@github.com:anthorteam/juno-node-sdk.git",
