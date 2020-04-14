@@ -8,6 +8,7 @@ import { JunoEnvironmentError } from '../errors';
 import {
   AuthResource,
   BalanceResource,
+  ChargeResource,
   DataResource,
   DigitalAccountResource,
   NotificationsResource,
@@ -23,11 +24,13 @@ import { BaseResourceConstructor } from '../resources/BaseResource';
  */
 export class JunoSDK {
   private readonly _balances: BalanceResource;
+  private readonly _charges: ChargeResource;
   private readonly _data: DataResource;
   private readonly _digitalAccount: DigitalAccountResource;
   private readonly _documents: DocumentResource;
   private readonly _notifications: NotificationsResource;
   private readonly _transfers: TransfersResource;
+
 
   constructor(config?: JunoSDKConfig) {
     const {
@@ -50,6 +53,7 @@ export class JunoSDK {
     };
 
     this._balances = new BalanceResource(resourceConstructor);
+    this._charges = new ChargeResource(resourceConstructor);
     this._data = new DataResource(resourceConstructor);
     this._digitalAccount = new DigitalAccountResource(resourceConstructor);
     this._documents = new DocumentResource(resourceConstructor);
@@ -144,23 +148,27 @@ export class JunoSDK {
     return this._balances;
   }
 
-  get data(): DataResource {
+  get charges() {
+    return this._charges;
+  }
+
+  get data() {
     return this._data;
   }
 
-  get digitalAccount(): DigitalAccountResource {
+  get digitalAccount() {
     return this._digitalAccount;
   }
 
-  get documents(): DocumentResource {
+  get documents() {
     return this._documents;
   }
 
-  get notifications(): NotificationsResource {
+  get notifications() {
     return this._notifications;
   }
 
-  get transfers(): TransfersResource {
+  get transfers() {
     return this._transfers;
   }
 }

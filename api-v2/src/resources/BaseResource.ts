@@ -37,9 +37,6 @@ export abstract class BaseResource {
     return `${this.baseUri}${endpoint}`;
   }
 
-  /**
-   * TODO: this.authResource.refreshOAuthToken() method when its documentation became available
-   */
   private async getRequestConfig(token: string, headers: Record<string, string> = {}): Promise<AxiosRequestConfig> {
     const accessToken = await this.authResource.getOAuthToken();
     return {
@@ -67,11 +64,14 @@ export abstract class BaseResource {
     }
   }
 
-  protected async httpGet<T>(endpoint: string, token?: string): Promise<T> {
+  protected async httpGet<T>(endpoint: string, token?: string, params?: Record<string, any>): Promise<T> {
     return BaseResource.handleRequest(
       this.junoClient.get(
         this.getCompleteEndpoint(endpoint),
-        await this.getRequestConfig(token),
+        {
+          params,
+          ...await this.getRequestConfig(token),
+        },
       ),
     );
   }
