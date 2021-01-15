@@ -1,3 +1,4 @@
+export * from './AccountHolder';
 export * from './Address';
 export * from './Balance';
 export * from './BankAccount';
