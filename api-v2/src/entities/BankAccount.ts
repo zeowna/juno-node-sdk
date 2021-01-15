@@ -1,3 +1,4 @@
+import { AccountHolder } from './AccountHolder';
 import { JunoEntity } from './JunoEntity';
 
 export interface BankAccount extends JunoEntity {
@@ -6,4 +7,5 @@ export interface BankAccount extends JunoEntity {
   accountType: string;
   agencyNumber: string;
   bankNumber: string;
+  accountHolder?: AccountHolder;
 }
