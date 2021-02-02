@@ -58,7 +58,7 @@ export abstract class BaseResource {
           ? err.response.data.details.map((detail: any) => `${detail.message}`)
           : err.data;
 
-        throw new JunoError(message);
+        throw new JunoError(message, err.response.data);
       }
       throw err;
     }
