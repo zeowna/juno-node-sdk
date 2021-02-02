@@ -35,7 +35,7 @@ export class AuthResource {
       return data;
     } catch (err) {
       if (err.response) {
-        throw new JunoError(err.response.data.message);
+        throw new JunoError(err.response.data.message, err.response.data);
       }
       throw err;
     }

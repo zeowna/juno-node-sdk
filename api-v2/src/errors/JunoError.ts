@@ -1,6 +1,9 @@
 export class JunoError extends Error {
-  constructor(message: string) {
+  readonly rawError: any;
+
+  constructor(message: string, rawError?: any) {
     super(message);
     this.name = 'JunoError';
+    this.rawError = rawError;
   }
 }
