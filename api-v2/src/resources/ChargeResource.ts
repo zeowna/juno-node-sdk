@@ -11,4 +11,9 @@ export class ChargeResource extends BaseResource {
   getById(id: string) {
     return this.httpGet<GetChargeByIdResponse>(`/${id}`);
   }
+  
+  create(charge: PostChargeInput) {
+    return this.httpPost<PostChargeResponse>('/', charge);
+  }
+  
 }
