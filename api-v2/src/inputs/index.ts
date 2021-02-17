@@ -7,3 +7,4 @@ export * from './generateOauthTokenResponse';
 export * from './UpdateDigitalAccountInput';
 export * from './UpdateWebhookInput';
 export * from './CreateChargeInput';
+export * from './PaymentInput';

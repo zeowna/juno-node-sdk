@@ -1,6 +1,7 @@
 import { JunoEntity } from './JunoEntity';
 
 export interface Payment extends JunoEntity {
+  id: string;
   chargeId: string;
   date: Date;
   releaseDate: Date;
