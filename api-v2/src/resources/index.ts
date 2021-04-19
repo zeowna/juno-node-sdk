@@ -7,3 +7,4 @@ export * from './NotificationsResource';
 export * from './TransfersResource';
 export * from './PaymentResource';
 export * from './PixResource';
+

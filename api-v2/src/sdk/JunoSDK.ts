@@ -36,6 +36,7 @@ export class JunoSDK {
   private readonly _pix: PixResource;
 
 
+
   constructor(config?: JunoSDKConfig) {
     const {
       environment, clientId, secret, token,
@@ -65,6 +66,7 @@ export class JunoSDK {
     this._transfers = new TransfersResource(resourceConstructor);
     this._payment = new PaymentResource(resourceConstructor);
     this._pix = new PixResource(resourceConstructor);
+
   }
 
   private static mergeConfigWithEnvironment(config: JunoSDKConfig) {
