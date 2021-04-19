@@ -8,3 +8,4 @@ export * from './UpdateDigitalAccountInput';
 export * from './UpdateWebhookInput';
 export * from './CreateChargeInput';
 export * from './PaymentInput';
+export * from './PixChargeInput';
