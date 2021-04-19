@@ -8,10 +8,12 @@ import { JunoEnvironmentError } from '../errors';
 import {
   AuthResource,
   BalanceResource,
+  ChargeResource,
   DataResource,
   DigitalAccountResource,
   NotificationsResource,
   TransfersResource,
+  PaymentResource
 } from '../resources';
 import { DocumentResource } from '../resources/DocumentResource';
 import { BaseResourceConstructor } from '../resources/BaseResource';
@@ -23,11 +25,14 @@ import { BaseResourceConstructor } from '../resources/BaseResource';
  */
 export class JunoSDK {
   private readonly _balances: BalanceResource;
+  private readonly _charges: ChargeResource;
   private readonly _data: DataResource;
   private readonly _digitalAccount: DigitalAccountResource;
   private readonly _documents: DocumentResource;
   private readonly _notifications: NotificationsResource;
   private readonly _transfers: TransfersResource;
+  private readonly _payment: PaymentResource;
+
 
   constructor(config?: JunoSDKConfig) {
     const {
@@ -50,11 +55,13 @@ export class JunoSDK {
     };
 
     this._balances = new BalanceResource(resourceConstructor);
+    this._charges = new ChargeResource(resourceConstructor);
     this._data = new DataResource(resourceConstructor);
     this._digitalAccount = new DigitalAccountResource(resourceConstructor);
     this._documents = new DocumentResource(resourceConstructor);
     this._notifications = new NotificationsResource(resourceConstructor);
     this._transfers = new TransfersResource(resourceConstructor);
+    this._payment = new PaymentResource(resourceConstructor);
   }
 
   private static mergeConfigWithEnvironment(config: JunoSDKConfig) {
@@ -144,23 +151,31 @@ export class JunoSDK {
     return this._balances;
   }
 
-  get data(): DataResource {
+  get charges() {
+    return this._charges;
+  }
+
+  get data() {
     return this._data;
   }
 
-  get digitalAccount(): DigitalAccountResource {
+  get digitalAccount() {
     return this._digitalAccount;
   }
 
-  get documents(): DocumentResource {
+  get documents() {
     return this._documents;
   }
 
-  get notifications(): NotificationsResource {
+  get notifications() {
     return this._notifications;
   }
 
-  get transfers(): TransfersResource {
+  get transfers() {
     return this._transfers;
+  }
+  
+  get payment() {
+    return this._payment;
   }
 }
