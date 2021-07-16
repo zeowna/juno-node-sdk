@@ -1,3 +1,4 @@
+import { BankAccount } from '../entities';
 import { TransferTypes } from '../enums';
 
 export interface CreateTransferDefaultBankInput {
@@ -12,4 +13,11 @@ export interface CreateTransferP2PInput {
   amount: number;
 }
 
-export type CreateTransferInput = CreateTransferDefaultBankInput | CreateTransferP2PInput;
+export interface CreateTransferPIXInput {
+  type: TransferTypes.PIX;
+  document: string;
+  bankAccount: BankAccount
+  amount: number;
+}
+
+export type CreateTransferInput = CreateTransferDefaultBankInput | CreateTransferP2PInput | CreateTransferPIXInput;
