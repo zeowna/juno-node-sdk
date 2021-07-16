@@ -6,6 +6,10 @@ import { BaseResource } from './BaseResource';
 
 export class TransfersResource extends BaseResource {
   protected readonly baseUri = '/transfers';
+  readonly _requiredTokenTypes = [
+    TransferTypes.DEFAULT_BANK_ACCOUNT,
+    TransferTypes.PIX,
+  ];
 
   /**
    * Requests a Transfer
@@ -13,9 +17,9 @@ export class TransfersResource extends BaseResource {
    * @param requestTransferInput
    */
   create(requestTransferInput: CreateTransferInput) {
-    const { token, ...payload } = (requestTransferInput as CreateTransferDefaultBankInput);
+    const { token, ...payload } = requestTransferInput;
 
-    if (!token && payload.type === TransferTypes.DEFAULT_BANK_ACCOUNT) {
+    if (!token && this._requiredTokenTypes.includes(payload.type)) {
       throw new JunoParamsMissingError("token wasn't provided.");
     }
 
