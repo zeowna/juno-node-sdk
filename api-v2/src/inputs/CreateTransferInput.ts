@@ -17,6 +17,7 @@ export interface CreateTransferP2PInput {
 export interface CreateTransferPIXInput {
   token: string;
   type: TransferTypes.PIX;
+  name: string;
   document: string;
   bankAccount: BankAccount;
   amount: number;
