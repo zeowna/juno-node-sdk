@@ -13,7 +13,7 @@ import {
   DigitalAccountResource,
   NotificationsResource,
   TransfersResource,
-  PaymentResource
+  PaymentResource,
 } from '../resources';
 import { DocumentResource } from '../resources/DocumentResource';
 import { BaseResourceConstructor } from '../resources/BaseResource';
@@ -36,7 +36,7 @@ export class JunoSDK {
 
   constructor(config?: JunoSDKConfig) {
     const {
-      environment, clientId, secret, token,
+      environment, clientId, secret, token, loggingFn,
     } = JunoSDK.mergeConfigWithEnvironment(config);
 
     const junoAuthClient = JunoSDK.createJunoAuthClient(environment);
@@ -52,6 +52,7 @@ export class JunoSDK {
       junoClient,
       token,
       authResource,
+      loggingFn,
     };
 
     this._balances = new BalanceResource(resourceConstructor);
@@ -174,7 +175,7 @@ export class JunoSDK {
   get transfers() {
     return this._transfers;
   }
-  
+
   get payment() {
     return this._payment;
   }

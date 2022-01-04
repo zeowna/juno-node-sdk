@@ -1,13 +1,17 @@
-import { AxiosInstance, AxiosRequestConfig } from 'axios';
+import {
+  AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse,
+} from 'axios';
 import * as FormData from 'form-data';
 import { ReadStream } from 'fs';
 import { JunoError } from '../errors';
+import { JunoLoggingFn } from '../logging';
 import { AuthResource } from './AuthResource';
 
 export interface BaseResourceConstructor {
   junoClient: AxiosInstance;
   token: string;
   authResource: AuthResource;
+  loggingFn?: JunoLoggingFn;
 }
 
 /**
@@ -17,12 +21,16 @@ export abstract class BaseResource {
   protected abstract readonly baseUri: string;
   protected readonly junoClient: AxiosInstance;
   protected readonly token: string;
+  protected readonly loggingFn: JunoLoggingFn;
   private authResource: AuthResource;
 
-  constructor({ junoClient, token, authResource }: BaseResourceConstructor) {
+  constructor({
+    junoClient, token, authResource, loggingFn,
+  }: BaseResourceConstructor) {
     this.junoClient = junoClient;
     this.token = token;
     this.authResource = authResource;
+    this.loggingFn = loggingFn;
   }
 
   private getCompleteEndpoint(endpoint: string) {
@@ -48,12 +56,35 @@ export abstract class BaseResource {
     };
   }
 
-  private static async handleRequest<T>(request: Promise<any>): Promise<T> {
+  private async logRequest(config: AxiosRequestConfig, statusCode: number, data: any) {
+    await this.loggingFn({
+      url: `${config.baseURL}${config.url}`,
+      method: config.method.toUpperCase(),
+      body: config.data,
+      params: config.params,
+      statusCode,
+      response: data,
+    });
+  }
+
+  private async handleRequest<T>(request: Promise<AxiosResponse<any>>): Promise<T> {
     try {
-      const { data } = await request;
+      const { data, config, status } = await request;
+
+      await this.logRequest(config, status, data);
+
       return data;
     } catch (err) {
-      if (err.response) {
+      if (err.isAxiosError) {
+        const axiosErr: AxiosError = err;
+        const { config, status, data } = axiosErr.response;
+
+        await this.logRequest(
+          config,
+          status,
+          data,
+        );
+
         const message = err.response.data.details
           ? err.response.data.details.map((detail: any) => `${detail.message}`)
           : err.data;
@@ -65,7 +96,7 @@ export abstract class BaseResource {
   }
 
   protected async httpGet<T>(endpoint: string, token?: string, params?: Record<string, any>): Promise<T> {
-    return BaseResource.handleRequest(
+    return this.handleRequest(
       this.junoClient.get(
         this.getCompleteEndpoint(endpoint),
         {
@@ -77,7 +108,7 @@ export abstract class BaseResource {
   }
 
   protected async httpPost<T>(endpoint: string, payload: any, token?: string): Promise<T> {
-    return BaseResource.handleRequest(
+    return this.handleRequest(
       this.junoClient.post(
         this.getCompleteEndpoint(endpoint),
         payload,
@@ -87,7 +118,7 @@ export abstract class BaseResource {
   }
 
   protected async httpPut<T>(endpoint: string, payload: any, token?: string): Promise<T> {
-    return BaseResource.handleRequest(
+    return this.handleRequest(
       this.junoClient.put(
         this.getCompleteEndpoint(endpoint),
         payload,
@@ -97,7 +128,7 @@ export abstract class BaseResource {
   }
 
   protected async httpPatch<T>(endpoint: string, payload: any, token?: string): Promise<T> {
-    return BaseResource.handleRequest(
+    return this.handleRequest(
       this.junoClient.patch(
         this.getCompleteEndpoint(endpoint),
         payload,
@@ -107,7 +138,7 @@ export abstract class BaseResource {
   }
 
   protected async httpDelete<T>(endpoint: string, token?: string): Promise<T> {
-    return BaseResource.handleRequest(this.junoClient.delete(
+    return this.handleRequest(this.junoClient.delete(
       this.getCompleteEndpoint(endpoint),
       await this.getRequestConfig(token),
     ));
@@ -117,7 +148,7 @@ export abstract class BaseResource {
     const form = new FormData();
     readStreams.forEach(readStream => form.append('files', readStream));
 
-    return BaseResource.handleRequest(this.junoClient.post(
+    return this.handleRequest(this.junoClient.post(
       this.getCompleteEndpoint(endpoint),
       form,
       await this.getRequestConfig(
