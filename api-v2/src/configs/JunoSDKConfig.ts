@@ -1,3 +1,4 @@
+import { JunoLoggingFn } from '../logging';
 import { JunoEnvironments } from './JunoEnvironments';
 
 /**
@@ -24,4 +25,6 @@ export interface JunoSDKConfig {
    * Enable requests to Sandbox
    */
   environment: JunoEnvironments;
+
+  loggingFn?: JunoLoggingFn;
 }
