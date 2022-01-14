@@ -7,7 +7,7 @@ export class NotificationsResource extends BaseResource {
   protected readonly baseUri = '/notifications';
 
   getWebhooks(token?: string) {
-    return this.httpGet<GetListResponse<{ webhooks: Webhook }>>('/webhooks', token);
+    return this.httpGet<GetListResponse<{ webhooks: Webhook[] }>>('/webhooks', token);
   }
 
   getWebHookById(id: string, token: string) {
