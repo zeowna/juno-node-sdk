@@ -1,17 +1,17 @@
 import { BaseResource } from './BaseResource';
 import { GetListResponse } from '../responses';
 import { EventType, Webhook } from '../entities';
-import { CreateWebhookInput, UpdateWebhookInput } from '../inputs';
+import { CreateWebhookInput, UpdateWebhookInput, RemoveWebhookInput } from '../inputs';
 
 export class NotificationsResource extends BaseResource {
   protected readonly baseUri = '/notifications';
 
   getWebhooks(token?: string) {
-    return this.httpGet<GetListResponse<{ webhooks: NotificationsResource }>>('/webhooks', token);
+    return this.httpGet<GetListResponse<{ webhooks: Webhook }>>('/webhooks', token);
   }
 
   getWebHookById(id: string, token: string) {
-    return this.httpGet<NotificationsResource>(`/webhooks/${id}`, token);
+    return this.httpGet<Webhook>(`/webhooks/${id}`, token);
   }
 
   createWebhook({ token = undefined, ...payload }: CreateWebhookInput) {
@@ -22,7 +22,7 @@ export class NotificationsResource extends BaseResource {
     return this.httpPatch<Webhook>(`/webhooks/${id}`, payload, token);
   }
 
-  removeWebhook({ token, id }: UpdateWebhookInput) {
+  removeWebhook({ token, id }: RemoveWebhookInput) {
     return this.httpDelete<Webhook>(`/webhooks/${id}`, token);
   }
 

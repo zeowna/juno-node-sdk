@@ -6,4 +6,5 @@ export interface Webhook extends JunoEntity {
   url: string;
   status: WebhookStatus;
   eventTypes: EventType[];
+  label: string;
 }
