@@ -9,6 +9,9 @@ on:
     branches:
       - master
 
+env:
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
 jobs:
   ci-cd:
     name: CI/CD
@@ -51,8 +54,6 @@ jobs:
           DEPLOY_ENVIRONMENT: "2"
 
       - name: Publish to NPM
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm publish --access public
 
