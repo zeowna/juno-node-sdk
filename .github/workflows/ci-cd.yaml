@@ -24,7 +24,7 @@ jobs:
           repository: anthorteam/deploy-counter
           ref: main
           path: ./.github/deploy-counter
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ADMIN_TOKEN }}
       
       - uses: actions/setup-node@v2
         with:
