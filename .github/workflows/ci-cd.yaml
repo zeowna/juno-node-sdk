@@ -33,7 +33,7 @@ jobs:
         with:
           node-version: "10.x"
           cache: 'yarn'
-          cache-dependency-path: ${{ inputs.WORK_DIR }}/yarn.lock
+          cache-dependency-path: yarn.lock
       
       - name: Install dependencies
         run: |
