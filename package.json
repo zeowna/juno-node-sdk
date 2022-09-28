@@ -9,16 +9,12 @@
   },
   "scripts": {
     "lint": "eslint . --ext ts",
-    "lint:commit": "commitlint -e"
+    "lint:commit": "commitlint -e",
+    "prepare": "husky install"
   },
   "workspaces": [
     "packages/**/*"
   ],
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
