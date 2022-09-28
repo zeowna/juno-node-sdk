@@ -11,8 +11,6 @@ You must set following environment variables:
 # V2 API only
 export JUNO_CLIENT_ID=YOUR_CLIENT_ID
 export JUNO_SECRET=YOUR_SECRET
-
-# V1 and V2
 export JUNO_TOKEN=YOUR_TOKEN
 export JUNO_ENV=sandbox|production
 ```
@@ -20,19 +18,6 @@ export JUNO_ENV=sandbox|production
 ### JunoSDK constructor
 
 ```typescript
-/*
-* For V1
-*/
-export { JunoSDK, JunoEnvironments } from 'juno-node-sdk-v1';
-
-const juno = new JunoSDK({
-  token: 'YOUR_TOKEN',
-  environment: JunoEnvironments.Sandbox
-});
-
-/*
-* For V2
-*/
 export { JunoSDK, JunoEnvironments } from 'juno-node-sdk-v2';
 
 const juno = new JunoSDK({

@@ -8,11 +8,7 @@ The initialization can be performed either by ENVIRONMENT variables or by JunoSD
 You must set following environment variables:
 
 ```bash
-# V2 API only
-export JUNO_CLIENT_ID=YOUR_CLIENT_ID
-export JUNO_SECRET=YOUR_SECRET
-
-# V1 and V2
+# V1
 export JUNO_TOKEN=YOUR_TOKEN
 export JUNO_ENV=sandbox|production
 ```
@@ -27,18 +23,6 @@ export { JunoSDK, JunoEnvironments } from 'juno-node-sdk-v1';
 
 const juno = new JunoSDK({
   token: 'YOUR_TOKEN',
-  environment: JunoEnvironments.Sandbox
-});
-
-/*
-* For V2
-*/
-export { JunoSDK, JunoEnvironments } from 'juno-node-sdk-v2';
-
-const juno = new JunoSDK({
-  token: 'YOUR_TOKEN',
-  clientId: 'YOUR_CLIENT_ID',
-  secret: 'YOUR_SECRET'
   environment: JunoEnvironments.Sandbox
 });
 ```
