@@ -33,6 +33,9 @@ jobs:
       - name: Build
         run: yarn lerna bootstrap
 
+      - name: Configure git
+        run:  git config --global user.name "zeowna BOT" && git config --global user.email "joselucaschociai+github@gmail.com"
+
       - name: Deploy
         continue-on-error: true
         id: graduateRelease
