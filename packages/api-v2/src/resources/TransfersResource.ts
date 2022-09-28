@@ -13,6 +13,7 @@ export class TransfersResource extends BaseResource {
 
   /**
    * Requests a Transfer
+   * @see https://dev.juno.com.br/api/v2#operation/requestTransfer
    * @param token User token
    * @param requestTransferInput
    */
