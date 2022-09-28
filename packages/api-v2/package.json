@@ -1,6 +1,6 @@
 {
   "name": "juno-node-sdk-v2",
-  "version": "2.9.6",
+  "version": "2.9.7",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "repository": "git@github.com:zeowna/juno-node-sdk.git",
