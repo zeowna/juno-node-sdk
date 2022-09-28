@@ -28,7 +28,7 @@ jobs:
           cache-dependency-path: yarn.lock
 
       - name: Install dependencies
-        run: yarn add lerna && yarn lerna bootstrap
+        run: yarn
 
       - name: Build
         run: yarn lerna run --stream build
