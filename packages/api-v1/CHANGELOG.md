@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.9.6 (2022-09-28)
+
+
+### Bug Fixes
+
+* cd ([85a820a](https://github.com/zeowna/juno-node-sdk/commit/85a820adb915bd8f59f40eee4f0c17c543f0a596))
+
+
+
+
+
 ## 2.9.5 (2022-09-28)
 
 
