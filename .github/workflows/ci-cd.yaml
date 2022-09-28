@@ -24,7 +24,7 @@ jobs:
       - name: Get DeployCounter
         uses: actions/checkout@v2
         with:
-          repository: anthorteam/deploy-counter
+          repository: zeowna/deploy-counter
           ref: main
           path: ./.github/deploy-counter
           token: ${{ secrets.ADMIN_TOKEN }}
@@ -43,26 +43,6 @@ jobs:
         run: |
           yarn build
 
-      - name: Count deploy
-        id: count-deploy
-        uses: ./.github/deploy-counter/action
-        continue-on-error: true
-        with:
-          DEPLOYMENT_NAME: juno-node-sdk
-          DEPLOY_COUNTER_URL: https://${{ secrets.DEPLOY_COUNTER_URL }}/v1/deploy/
-          DEPLOY_COUNTER_API_KEY: ${{ secrets.COUNTER_API_KEY }}
-          DEPLOY_ENVIRONMENT: "2"
-
       - name: Publish to NPM
         run: |
           npm publish --access public
-
-      - name: Notify deploy issue
-        if: ${{ failure() }}
-        uses: ./.github/deploy-counter/notify-issue
-        continue-on-error: true
-        with:
-          DEPLOYMENT_NAME: juno-node-sdk
-          DEPLOY_COUNTER_URL: https://${{ secrets.DEPLOY_COUNTER_URL }}/v1/deploy/
-          DEPLOY_COUNTER_API_KEY: ${{ secrets.COUNTER_API_KEY }}
-          DEPLOY_ID: ${{ steps.count-deploy.outputs.DEPLOY_ID }}

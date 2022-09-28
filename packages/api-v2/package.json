@@ -1,0 +1,23 @@
+{
+  "name": "juno-node-sdk-v2",
+  "version": "2.9.2",
+  "private": true,
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "repository": "git@github.com:zeowna/juno-node-sdk.git",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "yarn clean && yarn compile",
+    "clean": "rm -rf ./dist && rm -rf tsconfig.build.tsbuildinfo",
+    "compile": "tsc -b tsconfig.build.json",
+    "lint": "eslint . --ext ts"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "form-data": "^3.0.0",
+    "jsonwebtoken": "^8.5.1"
+  }
+}

@@ -1,5 +1,7 @@
 import { BaseResource } from './BaseResource';
-import { GetChargeByIdResponse, GetChargesInput, GetChargesResponse, CreateChargesResponse } from '../responses';
+import {
+  GetChargeByIdResponse, GetChargesInput, GetChargesResponse, CreateChargesResponse,
+} from '../responses';
 import { CreateChargeInput } from '../inputs';
 
 export class ChargeResource extends BaseResource {
@@ -12,9 +14,8 @@ export class ChargeResource extends BaseResource {
   getById(id: string) {
     return this.httpGet<GetChargeByIdResponse>(`/${id}`);
   }
-  
+
   create(charge: CreateChargeInput) {
     return this.httpPost<CreateChargesResponse>('/', charge);
   }
-  
 }

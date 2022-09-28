@@ -8,5 +8,4 @@ export class PaymentResource extends BaseResource {
   pay(payment: PaymentInput) {
     return this.httpPost<PaymentPayResponse>('/', payment);
   }
-  
 }
