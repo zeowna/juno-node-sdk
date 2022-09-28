@@ -28,10 +28,10 @@ jobs:
           cache-dependency-path: yarn.lock
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install lerna && yarn lerna bootstrap
 
       - name: Build
-        run: yarn lerna bootstrap
+        run: yarn lerna run --stream build
 
       - name: Configure git
         run:  git config --global user.name "zeowna BOT" && git config --global user.email "joselucaschociai+github@gmail.com"
