@@ -1,6 +1,6 @@
 {
   "name": "juno-node-sdk-v2",
-  "version": "2.9.2",
+  "version": "2.9.3",
   "private": true,
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
