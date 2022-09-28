@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.9.9 (2022-09-28)
+
+
+### Bug Fixes
+
+* ignoring git hooks at lerna publish ([54d5614](https://github.com/zeowna/juno-node-sdk/commit/54d56148c0ae85a8e8484c4c9392ec05251638e8))
+
+
+
+
+
 ## 2.9.8 (2022-09-28)
 
 
