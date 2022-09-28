@@ -23,7 +23,7 @@ export JUNO_ENV=sandbox|production
 /*
 * For V1
 */
-export { JunoSDK, JunoEnvironments } from 'juno-node-sdk';
+export { JunoSDK, JunoEnvironments } from 'juno-node-sdk-v1';
 
 const juno = new JunoSDK({
   token: 'YOUR_TOKEN',
@@ -33,7 +33,7 @@ const juno = new JunoSDK({
 /*
 * For V2
 */
-export { V2 } from 'juno-node-sdk';
+export { V2 } from 'juno-node-sdk-v2';
 
 const { JunoSDK, JunoEnvironments } = V2;
 
