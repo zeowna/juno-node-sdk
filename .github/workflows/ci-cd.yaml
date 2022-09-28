@@ -20,14 +20,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Get DeployCounter
-        uses: actions/checkout@v2
-        with:
-          repository: zeowna/deploy-counter
-          ref: main
-          path: ./.github/deploy-counter
-          token: ${{ secrets.ADMIN_TOKEN }}
       
       - uses: actions/setup-node@v2
         with:
@@ -41,8 +33,9 @@ jobs:
       
       - name: Build
         run: |
-          yarn build
+          yarn lerna bootstrap
 
-      - name: Publish to NPM
-        run: |
-          npm publish --access public
+     - name: Deploy
+        run: lerna version --force-git-tag -y --conventional-commits --conventional-graduate          
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
